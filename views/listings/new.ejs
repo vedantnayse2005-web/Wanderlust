@@ -1,0 +1,56 @@
+<% layout("/layouts/boilerplate") %>
+
+    <body>
+        <div class="row">
+            <div class="col-8 offset-2">
+                <h1>Create New Listing</h1>
+                <form action="/listings" method="POST" enctype="multipart/form-data" class="row g-3 needs-validation" novalidate>
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Title:</label>
+                        <input type="text" id="title" name="listing[title]" required class="form-control">
+                            <div class="valid-feedback">Looks good!</div>
+                            <div class="invalid-feedback">Please enter a title.</div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description:</label>
+                        <textarea id="description" name="listing[description]" required class="form-control"></textarea>
+                            <div class="valid-feedback">Looks good!</div>
+                            <div class="invalid-feedback">Please enter a description.</div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="image" class="form-label">Photo or PDF</label>
+                        <input type="file" id="image" name="image" accept="image/jpeg,image/png,image/gif,image/webp,application/pdf" class="form-control">
+                        <div class="form-text">Maximum file size: 10 MB.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="image-url" class="form-label">Or use an image URL</label>
+                        <input type="url" id="image-url" name="listing[image][url]" class="form-control">
+                    </div>
+                    <div class="row">
+                        <div class="mb-3 col-md-4">
+                            <label for="price" class="form-label">Price:</label>
+                            <input type="number" id="price" name="listing[price]" step="0.01" class="form-control">
+                        </div>
+
+                        <div class="mb-3 col-md-4">
+                            <label for="country" class="form-label">Country:</label>
+                            <input type="text" id="country" placeholder="enter country" name="listing[country]" required
+                                class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="mb-3 col-8">
+                        <label for="location" class="form-label">Location:</label>
+                        <input type="text" id="location" name="listing[location]" required class="form-control">
+                    </div>
+
+
+
+                    <button type="submit" class="btn btn-dark">Create Listing</button>
+                </form>
+            </div>
+        </div>
+    </body>
+

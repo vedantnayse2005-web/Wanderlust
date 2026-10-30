@@ -1,0 +1,127 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="row mt-5 mb-5">
+  <div class="col-lg-6 col-md-8 offset-lg-3 offset-md-2">
+
+    <div class="edit-card">
+
+      <h2 class="edit-title">✏️ Edit Listing</h2>
+      <p class="edit-subtitle">Update your listing details below</p>
+
+      <form action="/listings/<%= listing._id %>?_method=PUT" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+
+        <div class="mb-3">
+          <label for="title" class="form-label">Title</label>
+          <input
+            type="text"
+            id="title"
+            name="listing[title]"
+            value="<%= listing.title %>"
+            class="form-control"
+            placeholder="Enter listing title"
+            required
+          >
+          <div class="valid-feedback">Looks good!</div>
+          <div class="invalid-feedback">Please enter a title.</div>
+        </div>
+
+        <div class="mb-3">
+          <label for="description" class="form-label">Description</label>
+          <textarea
+            id="description"
+            name="listing[description]"
+            class="form-control"
+            rows="4"
+            placeholder="Describe your listing"
+            required
+          ><%= listing.description %></textarea>
+          <div class="valid-feedback">Looks good!</div>
+          <div class="invalid-feedback">Please enter a description.</div>
+        </div>
+
+        <div class="mb-3">
+          <label for="image" class="form-label">Replace with photo or PDF</label>
+          <input
+            type="file"
+            id="image"
+            name="image"
+            accept="image/jpeg,image/png,image/gif,image/webp,application/pdf"
+            class="form-control"
+          >
+          <div class="form-text">Maximum file size: 10 MB.</div>
+        </div>
+
+        <div class="mb-3">
+          <label for="image-url" class="form-label">Or use an image URL</label>
+          <input
+            type="text"
+            id="image-url"
+            name="listing[image][url]"
+            value="<%= listing.image?.url || '' %>"
+            class="form-control"
+            placeholder="https://example.com/image.jpg"
+          >
+          <input type="hidden" name="listing[image][filename]" value="<%= listing.image?.filename || '' %>">
+          <input type="hidden" name="listing[image][contentType]" value="<%= listing.image?.contentType || '' %>">
+        </div>
+
+        <div class="mb-3">
+          <label for="price" class="form-label">Price per night (₹)</label>
+          <div class="input-group">
+            <span class="input-group-text">₹</span>
+            <input
+              type="number"
+              id="price"
+              name="listing[price]"
+              step="0.01"
+              value="<%= listing.price %>"
+              class="form-control"
+              placeholder="0.00"
+            >
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="location" class="form-label">Location</label>
+          <input
+            type="text"
+            id="location"
+            name="listing[location]"
+            value="<%= listing.location %>"
+            class="form-control"
+            placeholder="City, Area"
+            required
+          >
+          <div class="valid-feedback">Looks good!</div>
+          <div class="invalid-feedback">Please enter a location.</div>
+        </div>
+
+        <div class="mb-4">
+          <label for="country" class="form-label">Country</label>
+          <input
+            type="text"
+            id="country"
+            name="listing[country]"
+            value="<%= listing.country %>"
+            class="form-control"
+            placeholder="Country"
+            required
+          >
+          <div class="valid-feedback">Looks good!</div>
+          <div class="invalid-feedback">Please enter a country.</div>
+        </div>
+
+        <div class="d-flex gap-2">
+          <button type="submit" class="btn btn-update">
+            💾 Update Listing
+          </button>
+          <a href="/listings/<%= listing._id %>" class="btn btn-cancel">
+            Cancel
+          </a>
+        </div>
+
+      </form>
+    </div>
+
+  </div>
+</div>

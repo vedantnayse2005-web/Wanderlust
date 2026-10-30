@@ -1,0 +1,52 @@
+<% layout("/layouts/boilerplate") %>
+
+
+  <h1>All Listings</h1>
+
+  <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 g-4">
+
+    <% for(let listing of allListings){ %>
+
+      <% if(listing.title && listing.title.trim() !=="" ) { %>
+
+        <div class="col">
+          <a href="/listings/<%= listing._id %>" class="listing-link">
+
+            <div class="card listing-card">
+
+              <% if (listing.image?.contentType === 'application/pdf') { %>
+                <div class="card-img-top d-flex flex-column justify-content-center align-items-center bg-light text-dark" style="height:20rem;">
+                  <i class="fa-solid fa-file-pdf fs-1"></i>
+                  <span class="mt-2">PDF document</span>
+                </div>
+              <% } else { %>
+                <img src="<%= listing.image?.url || listing.image %>" class="card-img-top" alt="Listing Image" style="height:20rem;">
+              <% } %>
+                
+              <div class="card-img-overlay d-flex justify-content-center align-items-center">
+                <i class="fa-solid fa-eye fs-1 text-dark"></i>
+              </div>
+              <div class="card-body">
+                <p class="card-text">
+                  <b>
+                    <%= listing.title %>
+                  </b>
+                  <br>
+                  &#8377;<%= listing.price.toLocaleString("en-IN") %>/night
+                  <br>
+                  <small>By <%= listing.owner?.username || "Unknown" %></small>
+                </p>
+              </div>
+
+            </div>
+
+          </a>
+        </div>
+
+        <% } %>
+
+          <% } %>
+
+  </div> 
+
+  
